@@ -1,0 +1,16 @@
+<h1>{{ resource.prefLabel }}</h1>
+<ul>
+	{% for microthesaurus in microthesauri.all %}
+		<li>{{ microthesaurus.resource_type }}: <a href="{% url 'thesaurus:detail' microthesaurus.uri %}">{{ microthesaurus }}</a></li>
+	{% endfor %}
+</ul>
+<ul>
+	{% for property in resource.property_set.all %}
+		<li>{{ property }}</li>
+	{% endfor %}
+</ul>
+<ul>
+	{% for relationship in resource.relationship_set.all %}
+		<li>{{ relationship.relationship_type }} <a href="{% url 'thesaurus:detail' relationship.relationship_target.uri %}">{{ relationship.relationship_target }}</a></li>
+	{% endfor %}
+</ul>

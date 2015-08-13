@@ -1,0 +1,1 @@
+{{ object.property_source }} {{ object.property_type }} {{ object.property_text }}

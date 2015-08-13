@@ -1,0 +1,11 @@
+<h1>{{ resource.prefLabel }}</h1>
+<ul>
+	{% for property in resource.property_set.all %}
+		<li>{{ property }}</li>
+	{% endfor %}
+</ul>
+<ul>
+	{% for collection in collections.all %}
+		<li>{{ collection.resource_type }} <a href="{% url 'thesaurus:detail' collection.uri %}">{{ collection }}</a></li>
+	{% endfor %}
+</ul>

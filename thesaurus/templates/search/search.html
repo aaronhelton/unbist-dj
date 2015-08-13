@@ -1,0 +1,61 @@
+
+{% block content %}
+	<h2>Search</h2>
+	
+	<form method="get" action=".">
+		<table>
+			{{ form.as_table }}
+			<tr>
+				<td>&nbsp;</td>
+				<td>
+					<input type="submit" value="Search">
+				</td>
+			</tr>
+		</table>
+	
+		{% if query %}
+			<h3>Results</h3>
+			
+			<div>
+				<dl>
+					{% if facets.fields.resource_type %}
+					
+						<dt>Resource Type</dt>
+						{% for rt in facets.fields.resource_type %}
+							<dd><a href="{{ request.get_full_path }}&amp;selected_facets=resource_type_exact:{{ rt.0|urlencode }}">{{ rt.0 }}</a> ({{ rt.1 }})</dd>
+						{% endfor %}
+					
+					{% endif %}
+				</d>
+			</div>
+		
+			{% for result in page.object_list %}
+				{% if result.object.resource_type %}
+					<p>
+						<a href="{{ result.object.get_absolute_url }}">{{ result.object.prefLabel }}</a>
+					</p>
+				{% elif result.object.property_type %}
+					<p>
+						<a href="{% url 'thesaurus:detail' result.object.property_source.uri %}">{{ result.object.property_source }}</a> {{ result.object.property_type }} {{ result.object.property_text }}
+					</p>
+				{% elif result.object.relationship_type %}
+					<p>
+						<a href="{% url 'thesaurus:detail' result.object.relationship_source.uri %}">{{ result.object.relationship_source }}</a> {{ result.object.relationship_type }} <a href="{% url 'thesaurus:detail' result.object.relationship_target.uri %}">{{ result.object.relationship_target }}</a>
+					</p>
+				{% endif %}
+			{% empty %}
+				<p>No results found.</p>
+			{% endfor %}
+		
+			{% if page.has_previous or page.has_next %}
+				<div>
+					{% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
+					|
+					{% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
+				</div>
+			{% endif %}
+		{% else %}
+	
+		{% endif %}
+	</form>	
+{% endblock %}
