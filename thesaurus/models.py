@@ -4,6 +4,7 @@ from django.utils import translation
 # Create your models here.
 class Resource(models.Model):
     LABEL_CLASS = 'skos:prefLabel'
+    ALT_LABEL_CLASS = 'skos:altLabel'
     SKOS_CLASSES = (
         ('skos:ConceptScheme','Concept Scheme'),
         ('skos:Concept', 'Concept'),
@@ -33,14 +34,44 @@ class Resource(models.Model):
     def __unicode__(self):
         return self.prefLabel()
         
-    def full_resource(self):
-        p = Property.objects.filter(property_source=self)
-        
-        return p
-        
     def get_absolute_url(self):
         from django.core.urlresolvers import reverse
         return reverse('thesaurus:detail', kwargs={'uri': self.uri})
+        
+    def all_preferred_labels(self):
+        labels = Property.objects.filter(property_source=self, property_type=self.LABEL_CLASS)
+        label_list = []
+        for label in labels:
+            label_list.append(label.property_text)
+            
+        return label_list 
+        
+    def all_alternate_labels(self):
+        labels = Property.objects.filter(property_source=self, property_type=self.ALT_LABEL_CLASS)
+        label_list = []
+        for label in labels:
+            label_list.append(label.property_text)
+            
+        return label_list 
+        
+    def all_scope_notes(self):
+        notes = Property.objects.filter(property_source=self, property_type='skos:scopeNote')
+        note_list = []
+        for note in notes:
+            note_list.append(note.property_text)
+        
+        return note_list
+        
+    def all_relationships(self):
+        relationships = Relationship.objects.filter(relationship_source=self)
+        relationship_list = []
+        for relationship in relationships:
+            relationship_list.append(relationship.relationship_type + " " + relationship.relationship_target)
+            
+        return relationship_list
+        
+    def full_resource(self):
+        return [self.all_preferred_labels, self.all_alternate_labels, self.all_scope_notes]
         
 class Relationship(models.Model):
     SKOS_RELATIONSHIPS = (
