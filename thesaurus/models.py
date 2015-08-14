@@ -33,6 +33,11 @@ class Resource(models.Model):
     def __unicode__(self):
         return self.prefLabel()
         
+    def full_resource(self):
+        p = Property.objects.filter(property_source=self)
+        
+        return p
+        
     def get_absolute_url(self):
         from django.core.urlresolvers import reverse
         return reverse('thesaurus:detail', kwargs={'uri': self.uri})

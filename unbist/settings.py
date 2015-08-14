@@ -118,8 +118,8 @@ STATIC_URL = '/static/'
 
 HAYSTACK_CONNECTIONS = {
     'default': {
-    #    'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-        'ENGINE': 'multilingual.elasticsearch_backend.ElasticsearchMultilingualSearchEngine',
+        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+    #    'ENGINE': 'multilingual.elasticsearch_backend.ElasticsearchMultilingualSearchEngine',
         'URL': 'http://localhost:9200/',
         'INDEX_NAME': 'unbist',
         'INCLUDE_SPELLING': True,
