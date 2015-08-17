@@ -8,6 +8,6 @@ Search for the front-end (read-only) application is currently built to use Hayst
 
 Among the goals of this application are:
 
-1) Comprehensive search of concepts across their multilingual labels, scope notes, and spanning relationships.
-2) Full and intuitive CRUD operations for Concepts, Concept Schemes, and Collections, including assignment and traversal of properties and object links.
-3) Act as a starting point for additional semantic data aware applications, extending via a combination of published and custom ontologies, as appropriate.
+ * Comprehensive search of concepts across their multilingual labels, scope notes, and spanning relationships.
+ * Full and intuitive CRUD operations for Concepts, Concept Schemes, and Collections, including assignment and traversal of properties and object links.
+ * Act as a starting point for additional semantic data aware applications, extending via a combination of published and custom ontologies, as appropriate.
