@@ -1,6 +1,33 @@
 # unbist-dj
 
-This is a web application that allows the creation/import and management of multilingual thesauri. As such, it implements a subset of SKOS Core to aid in C_UD operations via the admin. Available owl:Class definitions include skos:ConceptScheme, skos:Concept, and skos:Collection. Available owl:ObjectProperty definitions include skos:broader, skos:narrower, skos:related, skos:member, skos:inScheme, skos:hasTopConcept, and skos:topCocnceptOf. Available owl:DatatypeProperty definitions include skos:prefLabel', 'skos:altLabel', 'skos:hiddenLabel', 'skos:notation', 'skos:note', 'skos:changeNote', 'skos:definition', 'skos:editorialNote', 'skos:example', 'skos:historyNote', and 'skos:scopeNote'. 
+This is a web application that allows the creation/import and management of multilingual thesauri. As such, it implements a subset of SKOS Core to aid in C_UD operations via the admin. 
+
+Available owl:Class definitions include 
+ * skos:ConceptScheme 
+ * skos:Concept 
+ * skos:Collection. 
+
+Available owl:ObjectProperty definitions include 
+ * skos:broader 
+ * skos:narrower
+ * skos:related
+ * skos:member
+ * skos:inScheme
+ * skos:hasTopConcept
+ * skos:topCocnceptOf
+
+Available owl:DatatypeProperty definitions include 
+ * skos:prefLabel
+ * skos:altLabel
+ * skos:hiddenLabel
+ * skos:notation
+ * skos:note
+ * skos:changeNote
+ * skos:definition
+ * skos:editorialNote
+ * skos:example
+ * skos:historyNote
+ * skos:scopeNote 
 
 The file 13.sql is a sample seed file containing an entire category of data. Keep in mind that, since this came from an existing thesaurus, some of the relationships will fail to resolve, and there will be errors running the SQL.
 
