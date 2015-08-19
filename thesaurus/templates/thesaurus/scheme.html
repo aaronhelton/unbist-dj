@@ -1,3 +1,8 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="{% static 'thesaurus/style.css' %}">
+
 <h1>{{ resource.prefLabel }}</h1>
 <ul>
 	{% for property in resource.property_set.all %}

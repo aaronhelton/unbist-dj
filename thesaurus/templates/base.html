@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Thesaurus</title>
+	{% load staticfiles %}
+
+
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'thesaurus/style.css' %}">
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">UNBIST Thesaurus</a>
+			</div>
+			<div class="collapse navbar-collapse" id="main-navbar">
+				<ul class="nav navbar-nav">
+					<li class="ar"><a href="/ar/">العربية</a></li>
+					<li class="zh"><a href="../zh/">中文</a></li>
+					<li class="en"><a href="/en/">English</a></li>
+					<li class="fr"><a href="/fr/">Français</a></li>
+					<li class="ru"><a href="/ru/" >Русский</a></li>
+					<li class="es"><a href="/es/" >Español</a></li>
+				</ul>
+				<form class="navbar-form navbar-right" role="search" method="get" action="{% url 'haystack_search' %}">
+					<input type="text" class="form-control" name="q">
+					<button type="submit" class="btn btn-default" value="Search">Seach</button>
+				</form>
+			</div>
+		</nav>
+		{% block content %}{% endblock content %}
+</body>
+</html>
