@@ -1,4 +1,13 @@
-
+{% load highlight %}
+{% load more_like_this %}
+<style>
+.highlighted {
+	background-color:#FFFF00;
+}
+.snippet {
+	color:#666666;
+}
+</style>
 {% block content %}
 	<h2>Search</h2>
 	
@@ -28,11 +37,12 @@
 					{% endif %}
 				</d>
 			</div>
-		
+
 			{% for result in page.object_list %}
 				{% if result.object.resource_type %}
 					<p>
 						<a href="{{ result.object.get_absolute_url }}">{{ result.object.prefLabel }}</a>
+						<p class="snippet">{% highlight result.object.all_preferred_labels with query html_tag "span" %}</p>
 					</p>
 				{% elif result.object.property_type %}
 					<p>
@@ -46,6 +56,8 @@
 			{% empty %}
 				<p>No results found.</p>
 			{% endfor %}
+			
+			{% more_like_this resource as related_content %}
 		
 			{% if page.has_previous or page.has_next %}
 				<div>

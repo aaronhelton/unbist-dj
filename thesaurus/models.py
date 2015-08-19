@@ -44,7 +44,7 @@ class Resource(models.Model):
         for label in labels:
             label_list.append(label.property_text)
             
-        return label_list 
+        return ", ".join(label_list)
         
     def all_alternate_labels(self):
         labels = Property.objects.filter(property_source=self, property_type=self.ALT_LABEL_CLASS)
