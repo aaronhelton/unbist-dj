@@ -14,7 +14,7 @@ from .models import Resource
 
 
 def index(request):
-    concept_schemes = ConceptScheme.objects.get(uri='00')
+    concept_schemes = ConceptScheme.objects.all()
     template = loader.get_template('thesaurus/index.html')
     context = RequestContext(request, {
         'concept_schemes': concept_schemes,

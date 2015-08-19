@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 
-{% if concept_schemes %}
-	<ul>
-		{% for scheme in concept_schemes %}
-			<li><a href="{% url 'thesaurus:detail' scheme.uri %}">{{ scheme.prefLabel }}</a></li>
-		{% endfor %}
-	</ul>
-{% endif %}
+{% block content %}
+	{% if concept_schemes %}
+		<ul>
+			{% for scheme in concept_schemes %}
+				<li><a href="{% url 'thesaurus:detail' scheme.uri %}">{{ scheme.prefLabel }}</a></li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+{% endblock %}
