@@ -38,3 +38,16 @@ Among the goals of this application are:
  * Comprehensive search of concepts across their multilingual labels, scope notes, and spanning relationships.
  * Full and intuitive CRUD operations for Concepts, Concept Schemes, and Collections, including assignment and traversal of properties and object links.
  * Act as a starting point for additional semantic data aware applications, extending via a combination of published and custom ontologies, as appropriate.
+
+# Installing
+
+This isn't a comprehensive guide. Things could go wrong. This checklist assumes you already have Python and Django installed.
+
+1. Install Elasticsearch and elasticsearch-py
+2. Install the django-multilingual-search library, but use my version: https://github.com/aaronhelton/django-multilingual-search Make sure the library is available in your Python libraries path. For instance, mine is at /Library/Python/2.7/site-packages/multilingual
+3. Clone this repository and check the database settings.
+4. Run migrations: python manage.py migrate
+5. Seed the database using 13.sql. I didn't provide this via a migration or anything, so you'll have to use your database client to source the file directly. Feel free to contribute a migration that will work with the model structure of this app.
+6. Change settings.py to reflect your Elasticsearch install and desired index name.
+7. Build the index: python manage.py rebuild_index
+8. Run the server: python manage.py runserver
