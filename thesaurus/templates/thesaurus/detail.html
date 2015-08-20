@@ -5,13 +5,13 @@
 <div class="container">
 	<div class="row">
 		<h1>{{ resource.prefLabel }}</h1>
+		{% for microthesaurus in microthesauri.all %}
 		<ul class="breadcrumb">
-			{% for microthesaurus in microthesauri.all %}
 				<li>{{ microthesaurus.resource_type }}: 
 					<a href="{% url 'thesaurus:detail' microthesaurus.uri %}">{{ microthesaurus }}</a>
 				</li>
-			{% endfor %}
 		</ul>
+		{% endfor %}
 		<div class="row">
 			<div class="col-md-6">
 				<ul class="list-group">

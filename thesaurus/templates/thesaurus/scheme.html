@@ -1,16 +1,32 @@
-{% load staticfiles %}
+{% extends "base.html" %}
 
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="{% static 'thesaurus/style.css' %}">
-
-<h1>{{ resource.prefLabel }}</h1>
-<ul>
-	{% for property in resource.property_set.all %}
-		<li>{{ property }}</li>
-	{% endfor %}
-</ul>
-<ul>
-	{% for collection in collections.all %}
-		<li>{{ collection.resource_type }} <a href="{% url 'thesaurus:detail' collection.uri %}">{{ collection }}</a></li>
-	{% endfor %}
-</ul>
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<h1>{{ concept_scheme.prefLabel }}</h1>
+			<div class="row">
+			<div class="col-md-6">
+				<ul class="list-group">
+					<li class="list-group-item disabled">Properties</li>
+					{% for property in concept_scheme.property_set.all %}
+						<li class="list-group-item">{{ property }}</li>
+					{% endfor %}
+				</ul>
+			</div>
+				<div class="col-md-6">
+					{% if domains %}
+					<ul class="list-group">
+						<li class="list-group-item disabled">Relationships</li>
+						{% for domain in domains.all %}
+						<li class="list-group-item">{{ domain.resource_type }} 
+							<a href="{% url 'thesaurus:detail' domain.uri %}">{{ domain }}</a>
+						</li>
+								
+						{% endfor %}
+					</ul>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
