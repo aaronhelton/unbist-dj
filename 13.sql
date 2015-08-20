@@ -1,10 +1,20 @@
 insert into thesaurus_resource (uri, resource_type) values('00','skos:ConceptScheme');
+	
+insert into thesaurus_property (property_source_id, property_text, property_type, property_language) values((select id from thesaurus_resource where uri = '00'), 'UNBIS Thesaurus_ar', 'skos:prefLabel', 'ar');
+insert into thesaurus_property (property_source_id, property_text, property_type, property_language) values((select id from thesaurus_resource where uri = '00'), 'UNBIS Thesaurus_zh', 'skos:prefLabel', 'zh');
+insert into thesaurus_property (property_source_id, property_text, property_type, property_language) values((select id from thesaurus_resource where uri = '00'), 'UNBIS Thesaurus_en', 'skos:prefLabel', 'en');
+insert into thesaurus_property (property_source_id, property_text, property_type, property_language) values((select id from thesaurus_resource where uri = '00'), 'UNBIS Thesaurus_fr', 'skos:prefLabel', 'fr');
+insert into thesaurus_property (property_source_id, property_text, property_type, property_language) values((select id from thesaurus_resource where uri = '00'), 'UNBIS Thesaurus_ru', 'skos:prefLabel', 'ru');
+insert into thesaurus_property (property_source_id, property_text, property_type, property_language) values((select id from thesaurus_resource where uri = '00'), 'UNBIS Thesaurus_es', 'skos:prefLabel', 'es');
+
+insert into thesaurus_resource (uri, resource_type) values('13','skos:Collection');
 insert into thesaurus_property (property_source_id, property_text, property_type, property_language) values((select id from thesaurus_resource where uri = '13'), '13 - معونات إنسانية وإغاثة', 'skos:prefLabel', 'ar');
 insert into thesaurus_property (property_source_id, property_text, property_type, property_language) values((select id from thesaurus_resource where uri = '13'), '13 - 人道主义救援', 'skos:prefLabel', 'zh');
 insert into thesaurus_property (property_source_id, property_text, property_type, property_language) values((select id from thesaurus_resource where uri = '13'), '13 - humanitarian aid and relief', 'skos:prefLabel', 'en');
 insert into thesaurus_property (property_source_id, property_text, property_type, property_language) values((select id from thesaurus_resource where uri = '13'), '13 - assistance humanitaire', 'skos:prefLabel', 'fr');
 insert into thesaurus_property (property_source_id, property_text, property_type, property_language) values((select id from thesaurus_resource where uri = '13'), '13 - ГУМАНИТАРНАЯ ПОМОЩЬ', 'skos:prefLabel', 'ru');
 insert into thesaurus_property (property_source_id, property_text, property_type, property_language) values((select id from thesaurus_resource where uri = '13'), '13 - asistencia humanitaria', 'skos:prefLabel', 'es');
+	
 insert into thesaurus_resource (uri, resource_type) values('130100','skos:Collection');
 insert into thesaurus_property (property_source_id, property_text, property_type, property_language) values((select id from thesaurus_resource where uri = '130100'), '13.01.00 - حماية ومساعدة اللاجئين والمشردين', 'skos:prefLabel', 'ar');
 insert into thesaurus_property (property_source_id, property_text, property_type, property_language) values((select id from thesaurus_resource where uri = '130100'), '13.01.00 - 保护和援助难民和流离失所者', 'skos:prefLabel', 'zh');
@@ -1552,8 +1562,6 @@ insert into thesaurus_relationship (relationship_source_id, relationship_type, r
 insert into thesaurus_relationship (relationship_source_id, relationship_type, relationship_target_id) values((select id from thesaurus_resource where uri = '130100'), 'skos:member', (select id from thesaurus_resource where uri = 'T0006432'));
 insert into thesaurus_relationship (relationship_source_id, relationship_type, relationship_target_id) values((select id from thesaurus_resource where uri = '130100'), 'skos:member', (select id from thesaurus_resource where uri = 'T0010281'));
 
-insert into thesaurus_relationship (relationship_source_id, relationship_type, relationship_target_id) values((select id from thesaurus_resource where uri = '130100'), 'skos:inScheme', (select id from thesaurus_resource where uri = '00'));
-insert into thesaurus_relationship (relationship_source_id, relationship_type, relationship_target_id) values((select id from thesaurus_resource where uri = '13'), 'skos:member', (select id from thesaurus_resource where uri = '130100'));
 insert into thesaurus_relationship (relationship_source_id, relationship_type, relationship_target_id) values((select id from thesaurus_resource where uri = '130100'), 'skos:member', (select id from thesaurus_resource where uri = 'T0009697'));
 insert into thesaurus_relationship (relationship_source_id, relationship_type, relationship_target_id) values((select id from thesaurus_resource where uri = '130100'), 'skos:member', (select id from thesaurus_resource where uri = 'T0010075'));
 insert into thesaurus_relationship (relationship_source_id, relationship_type, relationship_target_id) values((select id from thesaurus_resource where uri = '130100'), 'skos:member', (select id from thesaurus_resource where uri = 'T0003902'));
@@ -1643,8 +1651,7 @@ insert into thesaurus_relationship (relationship_source_id, relationship_type, r
 insert into thesaurus_relationship (relationship_source_id, relationship_type, relationship_target_id) values((select id from thesaurus_resource where uri = '130100'), 'skos:member', (select id from thesaurus_resource where uri = 'T0010323'));
 insert into thesaurus_relationship (relationship_source_id, relationship_type, relationship_target_id) values((select id from thesaurus_resource where uri = '130100'), 'skos:member', (select id from thesaurus_resource where uri = 'T0006432'));
 insert into thesaurus_relationship (relationship_source_id, relationship_type, relationship_target_id) values((select id from thesaurus_resource where uri = '130100'), 'skos:member', (select id from thesaurus_resource where uri = 'T0010281'));
-insert into thesaurus_relationship (relationship_source_id, relationship_type, relationship_target_id) values((select id from thesaurus_resource where uri = '130200'), 'skos:inScheme', (select id from thesaurus_resource where uri = '00'));
-insert into thesaurus_relationship (relationship_source_id, relationship_type, relationship_target_id) values((select id from thesaurus_resource where uri = '13'), 'skos:member', (select id from thesaurus_resource where uri = '130200'));
+
 insert into thesaurus_relationship (relationship_source_id, relationship_type, relationship_target_id) values((select id from thesaurus_resource where uri = '130200'), 'skos:member', (select id from thesaurus_resource where uri = 'T0003917'));
 insert into thesaurus_relationship (relationship_source_id, relationship_type, relationship_target_id) values((select id from thesaurus_resource where uri = '130200'), 'skos:member', (select id from thesaurus_resource where uri = 'T0005734'));
 insert into thesaurus_relationship (relationship_source_id, relationship_type, relationship_target_id) values((select id from thesaurus_resource where uri = '130200'), 'skos:member', (select id from thesaurus_resource where uri = 'T0001209'));
@@ -1691,8 +1698,7 @@ insert into thesaurus_relationship (relationship_source_id, relationship_type, r
 insert into thesaurus_relationship (relationship_source_id, relationship_type, relationship_target_id) values((select id from thesaurus_resource where uri = '130200'), 'skos:member', (select id from thesaurus_resource where uri = 'T0003931'));
 insert into thesaurus_relationship (relationship_source_id, relationship_type, relationship_target_id) values((select id from thesaurus_resource where uri = '130200'), 'skos:member', (select id from thesaurus_resource where uri = 'T0007212'));
 insert into thesaurus_relationship (relationship_source_id, relationship_type, relationship_target_id) values((select id from thesaurus_resource where uri = '130200'), 'skos:member', (select id from thesaurus_resource where uri = 'T0003932'));
-insert into thesaurus_relationship (relationship_source_id, relationship_type, relationship_target_id) values((select id from thesaurus_resource where uri = '130300'), 'skos:inScheme', (select id from thesaurus_resource where uri = '00'));
-insert into thesaurus_relationship (relationship_source_id, relationship_type, relationship_target_id) values((select id from thesaurus_resource where uri = '13'), 'skos:member', (select id from thesaurus_resource where uri = '130300'));
+
 insert into thesaurus_relationship (relationship_source_id, relationship_type, relationship_target_id) values((select id from thesaurus_resource where uri = '130300'), 'skos:member', (select id from thesaurus_resource where uri = 'T0009162'));
 insert into thesaurus_relationship (relationship_source_id, relationship_type, relationship_target_id) values((select id from thesaurus_resource where uri = '130300'), 'skos:member', (select id from thesaurus_resource where uri = 'T0003943'));
 insert into thesaurus_relationship (relationship_source_id, relationship_type, relationship_target_id) values((select id from thesaurus_resource where uri = '130300'), 'skos:member', (select id from thesaurus_resource where uri = 'T0010272'));
