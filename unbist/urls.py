@@ -16,14 +16,17 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf.urls.i18n import i18n_patterns
-
+from thesaurus import views
 
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    #url(r'^search/', include('haystack.urls')),
 ]
 
 urlpatterns += i18n_patterns(
+    #url(r'^$', include('thesaurus.urls', namespace='thesaurus')),
+    url(r'^$', views.index, name='index'),
     url(r'^thesaurus/', include('thesaurus.urls', namespace='thesaurus')),
-    url(r'^search/', include('haystack.urls')),
+    url(r'^search/', include('haystack.urls'), name='haystack_search'),
 )

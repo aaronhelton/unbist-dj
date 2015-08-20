@@ -1,7 +1,32 @@
-{% if concept_schemes %}
-	<ul>
-		{% for scheme in concept_schemes %}
-			<li><a href="{% url 'thesaurus:detail' scheme.uri %}">{{ scheme.prefLabel }}</a></li>
-		{% endfor %}
-	</ul>
-{% endif %}
+{% extends "base.html" %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<h1>{{ concept_scheme.prefLabel }}</h1>
+			<div class="row">
+			<div class="col-md-6">
+				<ul class="list-group">
+					<li class="list-group-item disabled">Properties</li>
+					{% for property in concept_scheme.property_set.all %}
+						<li class="list-group-item">{{ property }}</li>
+					{% endfor %}
+				</ul>
+			</div>
+				<div class="col-md-6">
+					{% if domains %}
+					<ul class="list-group">
+						<li class="list-group-item disabled">Relationships</li>
+						{% for domain in domains.all %}
+						<li class="list-group-item">{{ domain.resource_type }} 
+							<a href="{% url 'thesaurus:detail' domain.uri %}">{{ domain }}</a>
+						</li>
+								
+						{% endfor %}
+					</ul>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

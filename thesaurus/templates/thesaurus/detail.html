@@ -1,16 +1,37 @@
-<h1>{{ resource.prefLabel }}</h1>
-<ul>
-	{% for microthesaurus in microthesauri.all %}
-		<li>{{ microthesaurus.resource_type }}: <a href="{% url 'thesaurus:detail' microthesaurus.uri %}">{{ microthesaurus }}</a></li>
-	{% endfor %}
-</ul>
-<ul>
-	{% for property in resource.property_set.all %}
-		<li>{{ property }}</li>
-	{% endfor %}
-</ul>
-<ul>
-	{% for relationship in resource.relationship_set.all %}
-		<li>{{ relationship.relationship_type }} <a href="{% url 'thesaurus:detail' relationship.relationship_target.uri %}">{{ relationship.relationship_target }}</a></li>
-	{% endfor %}
-</ul>
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+	<div class="row">
+		<h1>{{ resource.prefLabel }}</h1>
+		{% for microthesaurus in microthesauri.all %}
+		<ul class="breadcrumb">
+				<li>{{ microthesaurus.resource_type }}: 
+					<a href="{% url 'thesaurus:detail' microthesaurus.uri %}">{{ microthesaurus }}</a>
+				</li>
+		</ul>
+		{% endfor %}
+		<div class="row">
+			<div class="col-md-6">
+				<ul class="list-group">
+					<li class="list-group-item disabled">Properties</li>
+					{% for property in resource.property_set.all %}
+						<li class="list-group-item">{{ property }}</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="col-md-6">
+				<ul class="list-group">
+					<li class="list-group-item disabled">Relationships</li>
+					{% for relationship in resource.relationship_set.all %}
+						<li class="list-group-item">{{ relationship.relationship_type }} 
+							<a href="{% url 'thesaurus:detail' relationship.relationship_target.uri %}">{{ relationship.relationship_target }}</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
