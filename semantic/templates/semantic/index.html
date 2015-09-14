@@ -5,9 +5,9 @@
     <div class="row">
       <div class="col-md-6">
         <ul class="list-group">
-          <li class="list-group-item disabled">Concept Schemes</li>
-          {% for concept_scheme in concept_schemes %}
-          <li class="list-group-item"><a href="{% url 'thesaurus:scheme' concept_scheme.uri %}">{{ concept_scheme }}</a></li>
+          <li class="list-group-item disabled">Available applications</li>
+          {% for app in apps %}
+          <li class="list-group-item"><a href="/{{ LANGUAGE_CODE }}/{{ app }}">{{ app }}</a></li>
           {% endfor %}
         </ul>
       </div><!-- end col -->

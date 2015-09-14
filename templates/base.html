@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SkjoLD</title>
+  {% load staticfiles %}
+  {% load i18n %}
+  {% get_current_language as LANGUAGE_CODE %}
+  {% get_current_language_bidi as LANGUAGE_BIDI %}
+
+  <link rel="stylesheet" type="text/css" href="{% static '/static/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static '/static/style.css' %}">
+  <script type="text/javascript" src="{% static '/static/jquery-2.1.4.min.js' %}"></script>
+  <script type="text/javascript" src="{% static '/static/bootstrap.min.js' %}"></script>
+</head>
+{% if LANGUAGE_BIDI %}
+<body dir="rtl">
+{% else %}
+<body>
+{% endif %}
+    <nav class="navbar navbar-default">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!-- To do: make these play nicely with my i18n stuff. The stuff below seems hackish and likely to break. -->
+        <a class="navbar-brand" href="/">SkjoLD</a>
+        {% if request.resolver_match.app_name %}
+        <a class="navbar-brand" href="/{{ LANGUAGE_CODE }}/{{ request.resolver_match.app_name }}">{{ request.resolver_match.app_name }}</a>
+        <div class="collapse navbar-collapse" id="main-navbar">
+        <ul class="nav navbar-nav">
+          <li class="ar"><a href="/ar/{{ request.resolver_match.app_name }}/{{ uri }}">العربية</a></li>
+          <li class="zh"><a href="/zh/{{ request.resolver_match.app_name }}/{{ uri }}">中文</a></li>
+          <li class="en"><a href="/en/{{ request.resolver_match.app_name }}/{{ uri }}">English</a></li>
+          <li class="fr"><a href="/fr/{{ request.resolver_match.app_name }}/{{ uri }}">Français</a></li>
+          <li class="ru"><a href="/ru/{{ request.resolver_match.app_name }}/{{ uri }}" >Русский</a></li>
+          <li class="es"><a href="/es/{{ request.resolver_match.app_name }}/{{ uri }}" >Español</a></li>
+        </ul>
+        {% else %}
+        <div class="collapse navbar-collapse" id="main-navbar">
+        <ul class="nav navbar-nav">
+          <li class="ar"><a href="/ar/{{ uri }}">ﺎﻠﻋﺮﺒﻳﺓ</a></li>
+          <li class="zh"><a href="/zh/{{ uri }}">中文</a></li>
+          <li class="en"><a href="/en/{{ uri }}">English</a></li>
+          <li class="fr"><a href="/fr/{{ uri }}">Français</a></li>
+          <li class="ru"><a href="/ru/{{ uri }}" >Русский</a></li>
+          <li class="es"><a href="/es/{{ uri }}" >Español</a></li>
+        </ul>
+        {% endif %}
+                                <!--
+        <form class="navbar-form navbar-right" role="search" method="get" action=".">
+          <input type="text" class="form-control" name="q">
+          <button type="submit" class="btn btn-default" value="Search">Seach</button>
+        </form>
+                                -->
+      </div>
+    </nav>
+    {% block content %}{% endblock content %}
+</body>
+</html>

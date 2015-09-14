@@ -7,33 +7,62 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
+        ('semantic', '0002_auto_20150827_1544'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Property',
+            name='AlternateLabel',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('property_text', models.CharField(max_length=200)),
-                ('property_language', models.CharField(max_length=2)),
-                ('property_type', models.CharField(max_length=200)),
             ],
+            options={
+                'proxy': True,
+            },
+            bases=('semantic.property',),
         ),
         migrations.CreateModel(
-            name='Relationship',
+            name='Collection',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('relationship_type', models.CharField(max_length=200)),
-                ('relationship_target', models.CharField(max_length=200)),
             ],
+            options={
+                'proxy': True,
+            },
+            bases=('semantic.resource',),
         ),
         migrations.CreateModel(
-            name='Resource',
+            name='Concept',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('uri', models.CharField(max_length=200)),
-                ('datatype_properties', models.ManyToManyField(to='thesaurus.Property')),
-                ('object_properties', models.ManyToManyField(to='thesaurus.Relationship')),
             ],
+            options={
+                'proxy': True,
+            },
+            bases=('semantic.resource',),
+        ),
+        migrations.CreateModel(
+            name='ConceptScheme',
+            fields=[
+            ],
+            options={
+                'proxy': True,
+            },
+            bases=('semantic.resource',),
+        ),
+        migrations.CreateModel(
+            name='PreferredLabel',
+            fields=[
+            ],
+            options={
+                'proxy': True,
+            },
+            bases=('semantic.property',),
+        ),
+        migrations.CreateModel(
+            name='ScopeNote',
+            fields=[
+            ],
+            options={
+                'proxy': True,
+            },
+            bases=('semantic.property',),
         ),
     ]

@@ -1,1 +1,0 @@
-{{ object.relationship_source }} {{ object.relationship_type }} {{ object.relationship_target }}

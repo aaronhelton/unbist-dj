@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <h1>{{ resource.pref_label }}</h1>
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="list-group">
+          {% for prefix in prefixes %}
+            {{ prefix.turtle }}<br/>
+          {% endfor %}
+          {% if resource.property_set.count > 0 or resource.relationship_set.count > 0 %}
+            <span class="indent-4">{{ resource.turtle }} ;</span><br/>
+          {% else %}
+            <span class="indent-4">{{ resource.turtle }} .</span><br/>
+          {% endif %}
+          {% for property in resource.property_set.all %}
+            {% if property.id != resource.property_set.reverse.first.id %}
+              <span class="indent-4">{{ property.turtle }} ;</span><br/>
+            {% else %}
+              {% if resource.relationship_set.count > 0 %}
+                <span class="indent-4">{{ property.turtle }} ;</span><br/>
+              {% else %}
+                <span class="indent-4">{{ property.turtle }} .</span><br/>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+          {% for relationship in resource.relationship_set.all %}
+            {% if relationship.id != resource.relationship_set.reverse.first.id %}
+              <span class="indent-4">{{ relationship.turtle }} ;</span><br/>
+            {% else %}
+              <span class="indent-4">{{ relationship.turtle }} .</span><br/>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

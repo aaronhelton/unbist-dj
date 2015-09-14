@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <h1>{{ collection.pref_label }}</h1>
+      <div class="row">
+        <div class="col-md-12">
+          {% if children %}
+          <div class="panel panel-default">
+            <div class="panel-heading">Members</div>
+              <ul class="list-group">
+              {% for child in children.all %}
+              <li class="list-group-item">skos:member
+                {% if child.relationship_target.resource_type.name = 'Collection' %}
+                  <a href="{% url 'thesaurus:collection' child.relationship_target.uri %}">{{ child.relationship_target.pref_label }}</a>
+                {% else %}
+                  <a href="{% url 'thesaurus:detail' child.relationship_target.uri %}">{{ child.relationship_target.pref_label }}</a>
+                {% endif %}
+              </li>              
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </div><!-- /panel -->
+        </div><!-- /col -->
+      </div><!-- /row -->
+    </div><!-- /row -->
+  </div><!-- /container -->
+{% endblock %}
