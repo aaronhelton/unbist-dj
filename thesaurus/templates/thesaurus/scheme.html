@@ -12,7 +12,7 @@
             <li class="list-group-item disabled">Domains</li>
             {% for domain in domains.all %}
             <li class="list-group-item">{{ domain.resource_type }} 
-              <a href="{% url 'thesaurus:domain' domain.uri %}">{{ domain }}</a>
+              <a href="{% url 'thesaurus:collection' domain.uri %}">{{ domain }}</a>
             </li>
                 
             {% endfor %}
