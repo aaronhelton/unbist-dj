@@ -60,12 +60,32 @@ class Resource(models.Model):
                 return label.property_text
         else:
             return label.property_text
+
+    def pref_label_for(self, language):
+        current_language = language
+        try:
+            label = Property.objects.get(Q(property_source=self) & Q(property_type=self.label_class) & Q(property_language=current_language))
+        except Property.DoesNotExist:
+            try:
+                label = Property.objects.get(Q(property_source=self) & Q(property_type=self.label_class) & Q(property_language=settings.LANGUAGE_CODE))
+            except Property.DoesNotExist:
+                try:
+                    label = Property.objects.get(Q(property_source=self) & Q(property_type=self.label_class))
+                except Property.DoesNotExist:
+                    return self.uri
+                else:
+                    return label.property_text
+                #return self.uri
+            else:
+                return label.property_text
+        else:
+            return label.property_text
             
     def __unicode__(self):
         return self.pref_label()
 
     def get_absolute_url(self):
-        return reverse('semantic.views.detail', kwargs={'uri': self.uri})
+        return reverse('semantic.views.resource', kwargs={'uri': self.uri})
 
     def turtle(self):
         # only return the type declaration; properties and relationships can be done separately
@@ -82,6 +102,12 @@ class Relationship(models.Model):
 
     def turtle(self):
         return self.relationship_type.__unicode__() + " _:" + self.relationship_target.uri
+
+    def turtle_resolved(self):
+        return_str = ''
+        for lang in settings.LANGUAGES:
+            return_str += self.relationship_type.__unicode__() + " " + self.relationship_target.pref_label_for(lang) + "\n"
+        return return_str
 
 class Property(models.Model):
     property_source = models.ForeignKey('Resource')

@@ -27,5 +27,5 @@ urlpatterns += i18n_patterns(
     url(r'^$', include('semantic.urls', namespace='semantic')),
     url(r'^semantic/', include('semantic.urls', namespace='semantic')),
     url(r'^thesaurus/', include('thesaurus.urls', namespace='thesaurus-semantic', app_name='thesaurus')),
-    #url(r'^search/', include('haystack.urls'), name='haystack_search'),
+    url(r'^search/', include('haystack.urls'), name='haystack_search'),
 )
