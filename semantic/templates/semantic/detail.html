@@ -34,6 +34,10 @@
               <span class="indent-4">{{ relationship.turtle }} .</span><br/>
             {% endif %}
           {% endfor %}
+          <br />
+          {% for relationship in resource.relationship_set.all %}
+            <span class="indent-4">{{ relationship.relationship_target.turtle_resolved }}</span><br/>
+          {% endfor %}
         </ul>
       </div>
     </div>

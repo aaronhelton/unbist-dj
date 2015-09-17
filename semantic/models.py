@@ -85,12 +85,23 @@ class Resource(models.Model):
         return self.pref_label()
 
     def get_absolute_url(self):
-        return reverse('semantic.views.resource', kwargs={'uri': self.uri})
+        return reverse('semantic:detail', kwargs={'uri': self.uri})
 
     def turtle(self):
         # only return the type declaration; properties and relationships can be done separately
         # a base uri prefix needs to be registered in Prefixes, aliased to _
         return "_:" + self.uri + " a " + self.resource_type.__unicode__()
+
+    def turtle_resolved(self):
+        # only gets the preferred labels
+        return_str = "_:" + self.uri + " a " + self.resource_type.__unicode__() + "; "
+        qs = self.property_set.filter(property_type=self.label_class)
+        for p in qs:
+            if p == qs.latest('property_language'):
+                return_str += p.turtle() + " . "
+            else:
+                return_str += p.turtle() + " ; "
+        return return_str
 
 class Relationship(models.Model):
     relationship_source = models.ForeignKey('Resource')
