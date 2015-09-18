@@ -28,4 +28,5 @@ urlpatterns += i18n_patterns(
     url(r'^semantic/', include('semantic.urls', namespace='semantic-semantic', app_name='semantic')),
     url(r'^thesaurus/', include('thesaurus.urls', namespace='thesaurus-semantic', app_name='thesaurus')),
     url(r'^search/', include('haystack.urls'), name='haystack_search'),
+    url(r'^autocomplete/', 'semantic.views.autocomplete'),
 )

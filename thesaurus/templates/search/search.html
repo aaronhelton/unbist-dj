@@ -11,7 +11,7 @@
 
             {% for result in page.object_list %}
                 <p>
-                    <a href="{{ result.object.get_absolute_url }}">{{ result.object }}</a>
+                    <a href="{% url 'thesaurus:detail' result.object.uri %}">{{ result.object }}</a>
                 </p>
             {% empty %}
                 <p>No results found.</p>

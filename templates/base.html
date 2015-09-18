@@ -8,9 +8,30 @@
   {% get_current_language_bidi as LANGUAGE_BIDI %}
 
   <link rel="stylesheet" type="text/css" href="{% static '/static/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static '/static/jquery-ui.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static '/static/jquery-ui.structure.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static '/static/jquery-ui.theme.min.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static '/static/style.css' %}">
   <script type="text/javascript" src="{% static '/static/jquery-2.1.4.min.js' %}"></script>
+  <script type="text/javascript" src="{% static '/static/jquery-ui.min.js' %}"></script>
   <script type="text/javascript" src="{% static '/static/bootstrap.min.js' %}"></script>
+
+  <script>
+$(function() {
+  var test = ["probe", "examine", "try", "attempt"];
+  $( '#q' ).autocomplete({
+    source: function (request, response) {
+      $.getJSON("/{{ LANGUAGE_CODE }}" + "/autocomplete/?q=" + request.term, function (data) {
+        response(data)
+      });
+    },
+    select: function (event, ui) {
+      window.location = "/{{ LANGUAGE_CODE }}/{{ request.resolver_match.app_name }}/" + ui.item.url;
+    }
+  });
+});
+</script>
+
 </head>
 {% if LANGUAGE_BIDI %}
 <body dir="rtl">
@@ -48,12 +69,10 @@
           <li class="es"><a href="/es/{{ uri }}" >Español</a></li>
         </ul>
         {% endif %}
-                                <!--
-        <form class="navbar-form navbar-right" role="search" method="get" action=".">
-          <input type="text" class="form-control" name="q">
+        <form class="navbar-form navbar-right" role="search" method="get" action="/{{ LANGUAGE_CODE }}/{{ request.resolver_match.app_name }}/search">
+          <input type="text" class="form-control" id="q" name="q">
           <button type="submit" class="btn btn-default" value="Search">Seach</button>
         </form>
-                                -->
       </div>
     </nav>
     {% block content %}{% endblock content %}
