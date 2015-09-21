@@ -42,6 +42,10 @@ INSTALLED_APPS = (
     'thesaurus',
 )
 
+ROUTABLE_APPS = (
+    'thesaurus',
+)
+
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -98,8 +102,8 @@ HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
         'URL': 'http://127.0.0.1:9200/',
-        'INDEX_NAME': 'haystack',
-    },
+        'INDEX_NAME': 'semantic',
+    }
 }
 
 # Internationalization

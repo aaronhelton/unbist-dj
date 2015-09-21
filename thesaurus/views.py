@@ -2,7 +2,8 @@ from django.shortcuts import get_object_or_404, render
 from django.template import RequestContext, loader
 from django.template.context_processors import i18n
 from django.utils import translation
-#from haystack.utils import Highlighter
+from haystack.utils import Highlighter
+from haystack.generic_views import SearchView
 
 from .models import Concept
 from .models import Collection
@@ -28,4 +29,3 @@ def collection(request, uri):
     collection = get_object_or_404(Collection, uri=uri)
     children = collection.relationship_set.filter(relationship_type = OwlSuper.objects.get(name='member').id)
     return render(request, 'thesaurus/collection.html', {'collection': collection, 'children': children, 'uri': uri})
-

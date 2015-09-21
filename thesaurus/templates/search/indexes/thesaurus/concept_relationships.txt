@@ -1,0 +1,3 @@
+{% for r in object.relationship_set.all %}
+  {{ r.turtle_resolved }}
+{% endfor %}

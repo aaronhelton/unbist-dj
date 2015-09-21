@@ -69,10 +69,12 @@ $(function() {
           <li class="es"><a href="/es/{{ uri }}" >Español</a></li>
         </ul>
         {% endif %}
+        {% if request.resolver_match.app_name != None %}
         <form class="navbar-form navbar-right" role="search" method="get" action="/{{ LANGUAGE_CODE }}/{{ request.resolver_match.app_name }}/search">
           <input type="text" class="form-control" id="q" name="q">
           <button type="submit" class="btn btn-default" value="Search">Seach</button>
         </form>
+        {% endif %}
       </div>
     </nav>
     {% block content %}{% endblock content %}

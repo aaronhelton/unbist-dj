@@ -1,0 +1,5 @@
+{% for p in object.property_set.all %}
+  {% if p.property_type == object.label_class %}
+    {{ p.property_text }}
+  {% endif %}
+{% endfor %}
