@@ -11,7 +11,7 @@
 
             {% for result in page.object_list %}
                 <p>
-                    <a href="{% url 'thesaurus:detail' result.object.uri %}">{{ result.object }}</a>
+                    <a href="{% url 'thesaurus:detail' result.object.uri %}">{{ result.object }}</a><span> ({{ result.score }})</span>
                 </p>
             {% empty %}
                 <p>No results found.</p>
@@ -26,6 +26,11 @@
             {% endif %}
         {% else %}
             {# Show some example queries to run, maybe query syntax, something else? #}
+        {% endif %}
+        {% if sqs %}
+          {% for result in sqs %}
+            {{ result.object }}
+          {% endfor %}
         {% endif %}
   </div>
 </div>

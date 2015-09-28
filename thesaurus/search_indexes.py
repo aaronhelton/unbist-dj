@@ -2,7 +2,7 @@ from haystack import indexes
 from thesaurus.models import Concept, Collection, ConceptScheme
 
 class ConceptIndex(indexes.SearchIndex, indexes.Indexable):
-    text = indexes.CharField(document=True, use_template=True, boost=1.0)
+    text = indexes.CharField(document=True, use_template=True, boost=2.0)
     labels = indexes.NgramField(use_template=True, boost=2.0)
     notes = indexes.NgramField(use_template=True, boost=1.125)
     relationships = indexes.NgramField(use_template=True, boost=1.125)

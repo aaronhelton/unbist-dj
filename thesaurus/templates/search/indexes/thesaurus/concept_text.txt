@@ -1,7 +1,5 @@
-{{ object.turtle }}
 {% for p in object.property_set.all %}
-  {{ p.turtle }}
-{% endfor %}
-{% for r in object.relationship_set.all %}
-  {{ r.turtle_resolved }}
+  {% if p.property_type == object.label_class %}
+    {{ p.property_text }}
+  {% endif %}
 {% endfor %}

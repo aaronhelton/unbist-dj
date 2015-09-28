@@ -3,7 +3,6 @@ from django.template import RequestContext, loader
 from django.template.context_processors import i18n
 from django.utils import translation
 from haystack.utils import Highlighter
-from haystack.generic_views import SearchView
 
 from .models import Concept
 from .models import Collection

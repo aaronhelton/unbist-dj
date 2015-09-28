@@ -28,8 +28,9 @@ def resource(request, uri):
 def autocomplete(request):
     #sqs = SearchQuerySet().autocomplete(text_auto=request.GET.get('q', ''))[:10]
     sqs_labels = SearchQuerySet().autocomplete(labels=request.GET.get('q', ''))
-    sqs_text = SearchQuerySet().autocomplete(text_auto=request.GET.get('q', ''))
-    sqs = sqs_labels | sqs_text
+    sqs_notes = SearchQuerySet().autocomplete(notes=request.GET.get('q', ''))
+    sqs_rels = SearchQuerySet().autocomplete(relationships=request.GET.get('q', ''))
+    sqs = sqs_labels | sqs_notes | sqs_rels
     suggestions = []
     for result in sqs[:10]:
         res_id = result.id.split('.')[2]
