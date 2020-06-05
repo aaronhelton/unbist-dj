@@ -1,4 +1,4 @@
-Django==1.8.4
+Django==1.11.29
 django-haystack==2.4.0
 -e git://github.com/aaronhelton/django-multilingual-search.git@9e708cd9ce48cb2e29d5070d587599dc2724c81e#egg=django_multilingual_search-master
 elasticsearch==1.6.0
